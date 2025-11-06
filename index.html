@@ -14,6 +14,7 @@
       background-size: 800% 800%;
       animation: gradient 8s ease infinite alternate;
       overflow: hidden;
+      min-height: 100vh;
     }
 
     @keyframes gradient {
@@ -23,10 +24,13 @@
 
     h1 {
       color: white;
-      font-size: 3.5em;
-      margin-top: 60px;
+      font-size: 3.2em;
+      margin-top: 50px;
+      margin-bottom: 10px;
       text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
       animation: float 2s ease-in-out infinite alternate;
+      z-index: 10;
+      position: relative;
     }
 
     @keyframes float {
@@ -34,19 +38,23 @@
       100% { transform: translateY(-10px); }
     }
 
-    p {
+    p.main {
       color: #fff;
       font-size: 1.3em;
       font-weight: bold;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+      margin-bottom: 25px;
+      z-index: 10;
+      position: relative;
     }
 
     .emoji {
       position: absolute;
       font-size: 2em;
-      animation: fall 5s linear infinite;
+      animation: fall 6s linear infinite;
       opacity: 0.8;
       user-select: none;
+      z-index: 1;
     }
 
     @keyframes fall {
@@ -54,79 +62,55 @@
       100% { top: 110%; opacity: 0; }
     }
 
-    .popup-container {
+    .message-box {
+      position: relative;
+      background: rgba(255, 255, 255, 0.8);
+      color: #ff0077;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 25px;
+      width: 85%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(255, 0, 150, 0.4);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255,255,255,0.85);
-      border-radius: 25px;
-      padding: 25px 30px;
-      box-shadow: 0 0 25px rgba(255, 0, 150, 0.4);
-      animation: popup 0.6s ease;
+      gap: 10px;
+      z-index: 5;
     }
 
-    @keyframes popup {
-      0% { transform: translate(-50%, -60%) scale(0.8); opacity: 0; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    }
-
-    .popup-container p {
-      color: #ff0077;
-      font-size: 1.2em;
+    .message-box p {
       margin: 0;
+      font-size: 1.1em;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>I MISS YOU Chotu 💖</h1>
-  <p>Come back soon, bestie! It’s not the same without you 😢✨</p>
+  <h1>I MISS YOU Kaju Katliiii💖</h1>
+  <p class="main">Come back soon, bestie! It’s not the same without you 😢✨</p>
+
+  <div class="message-box">
+    <p>You’re my favorite human 💕</p>
+    <p>Distance can’t stop friendship 🌍❤️</p>
+    <p>Miss you loads 😭💖</p>
+    <p>Come soon, okay? 🥺✨</p>
+    <p>Thinking of you 😘</p>
+    <p>Virtual hug incoming 🤗💞</p>
+  </div>
 
   <script>
-    // Create falling emoji effect
     const emojis = ["💖", "🥰", "😘", "🌸", "💕", "💫", "✨", "🌹", "💌", "😚"];
     function createEmoji() {
       const emoji = document.createElement("div");
       emoji.classList.add("emoji");
       emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
+      emoji.style.animationDuration = (3 + Math.random() * 4) + "s";
       document.body.appendChild(emoji);
-      setTimeout(() => emoji.remove(), 6000);
+      setTimeout(() => emoji.remove(), 7000);
     }
     setInterval(createEmoji, 200);
-
-    // Show all popups together
-    function showAllPopups() {
-      const messages = [
-        "You’re my favorite human 💕",
-        "Distance can’t stop friendship 🌍❤️",
-        "Miss you loads 😭💖",
-        "Come soon, okay? 🥺✨",
-        "Thinking of you 😘",
-        "Virtual hug incoming 🤗💞"
-      ];
-
-      const container = document.createElement("div");
-      container.classList.add("popup-container");
-
-      messages.forEach(msg => {
-        const p = document.createElement("p");
-        p.textContent = msg;
-        container.appendChild(p);
-      });
-
-      document.body.appendChild(container);
-      setTimeout(() => container.remove(), 5000); // remove after 5 seconds
-    }
-
-    setTimeout(showAllPopups, 2500); // show all after 2.5s
   </script>
 </body>
 </html>
-
