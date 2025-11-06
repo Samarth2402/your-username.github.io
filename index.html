@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>I HATE YOU 😤❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I MISS YOU 💖</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: "Comic Sans MS", cursive;
-      background: linear-gradient(270deg, #ff0040, #ff7300, #ffeb00, #00eaff, #ff00c8);
-      background-size: 800% 800%;
-      animation: bgMove 6s ease infinite alternate;
-      overflow: hidden;
       text-align: center;
+      font-family: "Comic Sans MS", cursive;
+      background: linear-gradient(270deg, #ff66b2, #ffa07a, #ffd700, #aaffaa, #66ccff);
+      background-size: 800% 800%;
+      animation: gradient 8s ease infinite alternate;
+      overflow: hidden;
     }
 
-    @keyframes bgMove {
+    @keyframes gradient {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
@@ -24,20 +24,28 @@
     h1 {
       color: white;
       font-size: 3.5em;
-      margin-top: 50px;
-      text-shadow: 3px 3px 10px black;
-      animation: shake 0.3s infinite alternate;
+      margin-top: 70px;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+      animation: float 2s ease-in-out infinite alternate;
     }
 
-    @keyframes shake {
-      0% { transform: rotate(-2deg); }
-      100% { transform: rotate(2deg); }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.3em;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
     }
 
     .emoji {
       position: absolute;
       font-size: 2em;
-      animation: fall 4s linear infinite;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
       user-select: none;
     }
 
@@ -52,12 +60,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: white;
-      color: black;
+      color: #ff0077;
       padding: 15px 25px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(255, 0, 120, 0.4);
       font-size: 1.2em;
-      font-weight: bold;
       animation: popup 0.4s ease;
     }
 
@@ -68,29 +75,29 @@
   </style>
 </head>
 <body>
-  <h1>I HATE YOU 😤❤️</h1>
+  <h1>I MISS YOU 💖</h1>
+  <p>Come back soon, bestie! It’s not the same without you 😢✨</p>
 
   <script>
-    const emojis = ["😂", "😡", "🤪", "😤", "💔", "🙄", "😈", "💩", "🤣", "🤡"];
+    const emojis = ["💖", "🥰", "😘", "🌸", "💕", "💫", "✨", "🌹", "💌", "😚"];
     function createEmoji() {
       const emoji = document.createElement("div");
       emoji.classList.add("emoji");
       emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = (2 + Math.random() * 3) + "s";
+      emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
       document.body.appendChild(emoji);
-      setTimeout(() => emoji.remove(), 5000);
+      setTimeout(() => emoji.remove(), 6000);
     }
     setInterval(createEmoji, 200);
 
     const messages = [
-      "You can’t escape me 😈",
-      "Still here? 😜",
-      "I said I HATE YOU 😤❤️",
-      "Go away! (but not really 😏)",
-      "LOL got you again 😂",
-      "Bestie alert 💅",
-      "You love this chaos, admit it 😘"
+      "You’re my favorite human 💕",
+      "Distance can’t stop friendship 🌍❤️",
+      "Miss you loads 😭💖",
+      "Come soon, okay? 🥺✨",
+      "Thinking of you 😘",
+      "Virtual hug incoming 🤗💞"
     ];
 
     function showPopup() {
@@ -100,7 +107,6 @@
       document.body.appendChild(popup);
       setTimeout(() => popup.remove(), 2000);
     }
-
     setInterval(showPopup, 4000);
   </script>
 </body>
