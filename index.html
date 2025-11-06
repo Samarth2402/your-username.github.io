@@ -1,141 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>😜 Surprise Bestie 😜</title>
-<style>
-  html,body{margin:0;padding:0;overflow:hidden;height:100%;background:linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#1dd1a1);background-size:600% 600%;animation:bgmove 12s ease infinite;font-family:'Comic Sans MS',cursive,sans-serif;}
-  @keyframes bgmove {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-  #centerBox{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#fff;text-shadow:2px 2px 5px #000;}
-  h1{font-size:28px;margin-bottom:10px;}
-  #startBtn,#stopBtn{padding:12px 22px;font-size:18px;border:none;border-radius:10px;cursor:pointer;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,.3);}
-  #startBtn{background:#ff9f43;color:#fff;}
-  #stopBtn{background:#ee5253;color:#fff;display:none;}
-  .bubble{position:fixed;pointer-events:none;user-select:none;animation:fly 3.5s linear forwards;font-size:22px;}
-  @keyframes fly{
-    0%{opacity:1;transform:translateY(0) scale(1) rotate(0deg);}
-    100%{opacity:0;transform:translateY(-110vh) scale(1.6) rotate(360deg);}
-  }
-  .toast{
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
-    bottom:25px;
-    padding:10px 16px;
-    background:rgba(0,0,0,0.5);
-    color:#fff;
-    border-radius:12px;
-    font-weight:bold;
-    font-size:16px;
-    animation:pop 0.5s ease;
-  }
-  @keyframes pop{
-    0%{transform:translateX(-50%) scale(0.5);opacity:0;}
-    100%{transform:translateX(-50%) scale(1);opacity:1;}
-  }
-  .emojiRain{
-    position:fixed;
-    top:-40px;
-    font-size:24px;
-    animation:drop 3s linear forwards;
-  }
-  @keyframes drop{
-    0%{transform:translateY(0) rotate(0deg);}
-    100%{transform:translateY(120vh) rotate(720deg);}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I HATE YOU 😤❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+      background: linear-gradient(270deg, #ff4d4d, #ff66b2, #ffcc00, #00e6e6);
+      background-size: 800% 800%;
+      animation: bgMove 8s infinite alternate;
+      text-align: center;
+      color: white;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 50px;
+      animation: shake 0.3s infinite alternate;
+      text-shadow: 3px 3px 5px black;
+    }
+
+    @keyframes shake {
+      from { transform: rotate(-2deg); }
+      to { transform: rotate(2deg); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 2em;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { top: -10%; }
+      100% { top: 110%; }
+    }
+
+    .popup {
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      animation: popup 0.5s ease-in-out;
+    }
+
+    @keyframes popup {
+      from { transform: translate(-50%, -60%) scale(0.5); opacity: 0; }
+      to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-  <div id="centerBox">
-    <h1>🎉 Hey Bestie, Tap to See Magic 🎉</h1>
-    <p>Trust me... totally safe, maybe a little *too fun!* 😜</p>
-    <button id="startBtn">Start the Fun</button>
-    <button id="stopBtn">Stop</button>
-  </div>
 
-<script>
-const phrases=[
-  "heyyyy bestie 😎","still ignoring me? 😜","I can do this all day 💃",
-  "don’t run, it’s just FUN! 😂","surpriseeeee 🎈","you look awesome today 💅",
-  "keep smiling 😁","ping ping ping 📱","😂😂😂","BOO! 👻","HELLOOOOO 💖"
-];
-const emojis=["😂","🎉","💖","💃","🕺","😜","🤪","😎","✨","🔥","👑","🥳"];
+  <h1>I HATE YOU 😤❤️</h1>
 
-let bubbleTimer, toastTimer, emojiTimer;
-let running=false;
+  <script>
+    // Random emojis falling
+    const emojis = ["😂", "😡", "🤪", "😤", "💔", "🙄", "😈", "💩", "🤣", "🤡"];
+    function createEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = (3 + Math.random() * 2) + "s";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 5000);
+    }
+    setInterval(createEmoji, 300);
 
-function beep(){
-  try{
-    const ctx=new (window.AudioContext||window.webkitAudioContext)();
-    const osc=ctx.createOscillator();
-    const gain=ctx.createGain();
-    osc.connect(gain);gain.connect(ctx.destination);
-    osc.type="square";osc.frequency.value=440+Math.random()*600;
-    gain.gain.setValueAtTime(0.05,ctx.currentTime);
-    osc.start();
-    osc.stop(ctx.currentTime+0.15);
-    setTimeout(()=>ctx.close(),400);
-  }catch(e){}
-}
+    // Random funny popups
+    const messages = [
+      "You can’t escape me 😈",
+      "Still here? 😜",
+      "I said I HATE YOU 😤❤️",
+      "Go away! (but don’t really 😏)",
+      "LOL got you again 😂",
+      "Bestie detected 💅",
+      "Admit it, you miss me 😘"
+    ];
 
-function vibrate(){if(navigator.vibrate)navigator.vibrate([80,40,80]);}
+    function showPopup() {
+      const popup = document.createElement("div");
+      popup.classList.add("popup");
+      popup.innerText = messages[Math.floor(Math.random() * messages.length)];
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 2000);
+    }
 
-function createBubble(){
-  const b=document.createElement("div");
-  b.className="bubble";
-  b.textContent=phrases[Math.floor(Math.random()*phrases.length)];
-  b.style.left=Math.random()*90+"vw";
-  b.style.bottom="0vh";
-  b.style.color=`hsl(${Math.random()*360},90%,60%)`;
-  document.body.appendChild(b);
-  setTimeout(()=>b.remove(),3500);
-}
-
-function showToast(){
-  const t=document.createElement("div");
-  t.className="toast";
-  t.textContent=phrases[Math.floor(Math.random()*phrases.length)];
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),1500);
-}
-
-function emojiRain(){
-  const e=document.createElement("div");
-  e.className="emojiRain";
-  e.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-  e.style.left=Math.random()*95+"vw";
-  document.body.appendChild(e);
-  setTimeout(()=>e.remove(),3000);
-}
-
-function startFun(){
-  if(running) return;
-  running=true;
-  document.getElementById("startBtn").style.display="none";
-  document.getElementById("stopBtn").style.display="inline-block";
-  beep();vibrate();showToast();
-  bubbleTimer=setInterval(createBubble,600);
-  toastTimer=setInterval(showToast,1300);
-  emojiTimer=setInterval(emojiRain,400);
-}
-
-function stopFun(){
-  running=false;
-  document.getElementById("startBtn").style.display="inline-block";
-  document.getElementById("stopBtn").style.display="none";
-  clearInterval(bubbleTimer);
-  clearInterval(toastTimer);
-  clearInterval(emojiTimer);
-  showToast("Okay okay, stopping 😅");
-}
-
-document.getElementById("startBtn").addEventListener("click",startFun);
-document.getElementById("stopBtn").addEventListener("click",stopFun);
-</script>
+    setInterval(showPopup, 4000);
+  </script>
 </body>
 </html>
