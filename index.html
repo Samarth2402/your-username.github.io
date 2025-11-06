@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>I HATE YOU 😤❤️</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Comic Sans MS', cursive;
-      overflow: hidden;
-      background: linear-gradient(270deg, #ff4d4d, #ff66b2, #ffcc00, #00e6e6);
+      font-family: "Comic Sans MS", cursive;
+      background: linear-gradient(270deg, #ff0040, #ff7300, #ffeb00, #00eaff, #ff00c8);
       background-size: 800% 800%;
-      animation: bgMove 8s infinite alternate;
+      animation: bgMove 6s ease infinite alternate;
+      overflow: hidden;
       text-align: center;
-      color: white;
     }
 
     @keyframes bgMove {
@@ -23,75 +22,75 @@
     }
 
     h1 {
-      font-size: 3em;
+      color: white;
+      font-size: 3.5em;
       margin-top: 50px;
+      text-shadow: 3px 3px 10px black;
       animation: shake 0.3s infinite alternate;
-      text-shadow: 3px 3px 5px black;
     }
 
     @keyframes shake {
-      from { transform: rotate(-2deg); }
-      to { transform: rotate(2deg); }
+      0% { transform: rotate(-2deg); }
+      100% { transform: rotate(2deg); }
     }
 
     .emoji {
       position: absolute;
       font-size: 2em;
       animation: fall 4s linear infinite;
+      user-select: none;
     }
 
     @keyframes fall {
-      0% { top: -10%; }
-      100% { top: 110%; }
+      0% { top: -10%; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
     }
 
     .popup {
       position: fixed;
-      top: 40%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background: white;
       color: black;
-      padding: 20px;
+      padding: 15px 25px;
       border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      font-size: 1.2em;
       font-weight: bold;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-      animation: popup 0.5s ease-in-out;
+      animation: popup 0.4s ease;
     }
 
     @keyframes popup {
-      from { transform: translate(-50%, -60%) scale(0.5); opacity: 0; }
-      to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      0% { transform: translate(-50%, -60%) scale(0.7); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
-
   <h1>I HATE YOU 😤❤️</h1>
 
   <script>
-    // Random emojis falling
     const emojis = ["😂", "😡", "🤪", "😤", "💔", "🙄", "😈", "💩", "🤣", "🤡"];
     function createEmoji() {
       const emoji = document.createElement("div");
       emoji.classList.add("emoji");
       emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = (3 + Math.random() * 2) + "s";
+      emoji.style.animationDuration = (2 + Math.random() * 3) + "s";
       document.body.appendChild(emoji);
       setTimeout(() => emoji.remove(), 5000);
     }
-    setInterval(createEmoji, 300);
+    setInterval(createEmoji, 200);
 
-    // Random funny popups
     const messages = [
       "You can’t escape me 😈",
       "Still here? 😜",
       "I said I HATE YOU 😤❤️",
-      "Go away! (but don’t really 😏)",
+      "Go away! (but not really 😏)",
       "LOL got you again 😂",
-      "Bestie detected 💅",
-      "Admit it, you miss me 😘"
+      "Bestie alert 💅",
+      "You love this chaos, admit it 😘"
     ];
 
     function showPopup() {
