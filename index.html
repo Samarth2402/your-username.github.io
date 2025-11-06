@@ -10,7 +10,7 @@
       padding: 0;
       text-align: center;
       font-family: "Comic Sans MS", cursive;
-      background: linear-gradient(270deg, #ff66b2, #ffa07a, #ffd700, #aaffaa, #66ccff);
+      background: linear-gradient(270deg, #ff99cc, #ffb347, #fff68f, #a1ffce, #84fab0);
       background-size: 800% 800%;
       animation: gradient 8s ease infinite alternate;
       overflow: hidden;
@@ -24,7 +24,7 @@
     h1 {
       color: white;
       font-size: 3.5em;
-      margin-top: 70px;
+      margin-top: 60px;
       text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
       animation: float 2s ease-in-out infinite alternate;
     }
@@ -54,23 +54,32 @@
       100% { top: 110%; opacity: 0; }
     }
 
-    .popup {
+    .popup-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white;
-      color: #ff0077;
-      padding: 15px 25px;
+      background: rgba(255,255,255,0.85);
       border-radius: 25px;
-      box-shadow: 0 0 20px rgba(255, 0, 120, 0.4);
-      font-size: 1.2em;
-      animation: popup 0.4s ease;
+      padding: 25px 30px;
+      box-shadow: 0 0 25px rgba(255, 0, 150, 0.4);
+      animation: popup 0.6s ease;
     }
 
     @keyframes popup {
-      0% { transform: translate(-50%, -60%) scale(0.7); opacity: 0; }
+      0% { transform: translate(-50%, -60%) scale(0.8); opacity: 0; }
       100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .popup-container p {
+      color: #ff0077;
+      font-size: 1.2em;
+      margin: 0;
     }
   </style>
 </head>
@@ -79,6 +88,7 @@
   <p>Come back soon, bestie! It’s not the same without you 😢✨</p>
 
   <script>
+    // Create falling emoji effect
     const emojis = ["💖", "🥰", "😘", "🌸", "💕", "💫", "✨", "🌹", "💌", "😚"];
     function createEmoji() {
       const emoji = document.createElement("div");
@@ -91,23 +101,31 @@
     }
     setInterval(createEmoji, 200);
 
-    const messages = [
-      "You’re my favorite human 💕",
-      "Distance can’t stop friendship 🌍❤️",
-      "Miss you loads 😭💖",
-      "Come soon, okay? 🥺✨",
-      "Thinking of you 😘",
-      "Virtual hug incoming 🤗💞"
-    ];
+    // Show all popups together
+    function showAllPopups() {
+      const messages = [
+        "You’re my favorite human 💕",
+        "Distance can’t stop friendship 🌍❤️",
+        "Miss you loads 😭💖",
+        "Come soon, okay? 🥺✨",
+        "Thinking of you 😘",
+        "Virtual hug incoming 🤗💞"
+      ];
 
-    function showPopup() {
-      const popup = document.createElement("div");
-      popup.classList.add("popup");
-      popup.innerText = messages[Math.floor(Math.random() * messages.length)];
-      document.body.appendChild(popup);
-      setTimeout(() => popup.remove(), 2000);
+      const container = document.createElement("div");
+      container.classList.add("popup-container");
+
+      messages.forEach(msg => {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        container.appendChild(p);
+      });
+
+      document.body.appendChild(container);
+      setTimeout(() => container.remove(), 5000); // remove after 5 seconds
     }
-    setInterval(showPopup, 4000);
+
+    setTimeout(showAllPopups, 2500); // show all after 2.5s
   </script>
 </body>
 </html>
